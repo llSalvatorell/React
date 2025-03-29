@@ -1,4 +1,4 @@
-# Minha Aplicação
+# Nubank
 
 Bem-vindo(a) ao repositório **Nubank**. Siga as instruções abaixo para baixar e executar a aplicação.
 
