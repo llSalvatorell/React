@@ -1,99 +1,188 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
-import {
-  SafeAreaView,
-  SafeAreaProvider,
-  SafeAreaInsetsContext,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-import { navigate } from 'expo-router/build/global-state/routing';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-
-
-export default function App() {
+export default function HomeScreen() {
     const router = useRouter();
   
     return (
     <SafeAreaView style={styles.container}>
       <StatusBar/>
-      <View style={styles.cabecalho}>
-        <View style={styles.boxIconesCabecalho}>
-          <View style={styles.circulo}>
-              <Image style={styles.icone} source={require('./img/user.png')} />
-          </View>
-
-          <View style={styles.itensIcones} >
-            <View>
-            <Image style={styles.icone} source={require('./img/olho.png')} />
-            </View>
-            <View>
-            <Image style={styles.icone} source={require('./img/ajuda.png')} />
-            </View>
-            <View>
-            <Image style={styles.icone} source={require('./img/email.png')} />
+      <ScrollView>
+        <View style={styles.cabecalho}>
+          <View style={styles.boxIconesCabecalho}>
+            <TouchableOpacity onPress={() => router.push('/perfil')}>
+              <View style={styles.circulo}>
+                <Image style={styles.icone} source={require('./img/user.png')} />
+              </View>
+            </TouchableOpacity>
+            <View style={styles.itensIcones}>
+              <Image style={styles.icone} source={require('./img/olho.png')} />
+              <Image style={styles.icone} source={require('./img/ajuda.png')} />
+              <Image style={styles.icone} source={require('./img/email.png')} />
             </View>
           </View>
+          <Text style={styles.textUsuario}>E. Salvatore</Text>
         </View>
 
-        <View style={styles.boxTextUsuario}>
-          <Text style={styles.textUsuario}>Olá, Gabriela</Text>
+        <View style={styles.saldoContainer}>
+          <Text style={styles.saldoTitulo}>Conta</Text>
+          <Text style={styles.saldoValor}>R$10.000.000</Text>
         </View>
 
-      </View>
+        <View style={styles.atalhosContainer}>
+          <TouchableOpacity style={styles.atalho}>
+            <View style={styles.iconeContainer}>
+              <View style={styles.circuloA}>
+                <Image style={styles.icone} source={require('./img/pix.png')} />
+              </View>
+              <Text>Área Pix</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.atalho} onPress={() => router.push('/pagar')}>
+            <View style={styles.iconeContainer}>
+              <View style={styles.circuloA}>
+                <Image style={styles.icone} source={require('./img/barras.png')} />
+              </View>
+              <Text>Pagar</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.atalho}>
+            <View style={styles.iconeContainer}>
+              <View style={styles.circuloA}>
+                <Image style={styles.icone} source={require('./img/transferir.png')} />
+              </View>
+              <Text>Transferir</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.atalho} onPress={() => router.push('/depositar')}>
+            <View style={styles.iconeContainer}>
+              <View style={styles.circuloA}>
+                <Image style={styles.icone} source={require('./img/depositar.png')} />
+              </View>
+              <Text>Depositar</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View>
-        <Button title='Ir para teste' onPress={() => router.navigate('/sobre')}/>
-      </View>
+        <View style={styles.cardCartoes}>
+          <Text>Meus Cartões</Text>
+        </View>
 
+        <View style={styles.cardCredito}>
+          <Text style={styles.creditoTitulo}>Peça Seu Cartão</Text>
+          <Text>Cartão sem anuidade, tenha mais controle da sua vida financeira.</Text>
+          <TouchableOpacity style={styles.botaoRoxo}>
+            <Text style={styles.botaoTexto}>Pedir Cartão</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#fff', 
+    backgroundColor: '#F8F8F8',
   },
-  cabecalho:{
-    backgroundColor: '#490C74',
-    width: '100%',
-    height: 90,
-    paddingHorizontal: 20,
-    paddingTop: 10,
-  },
-  icone:{
-    width: 20,
-    height:20
-  },
-  circulo:{
-    width: 40,
-    height: 40,
-    backgroundColor: '#9603E8',
-    borderRadius: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+  cabecalho: {
+    backgroundColor: '#8000FF',
+    padding: 20,
+    paddingTop: 40,
   },
   boxIconesCabecalho: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  itensIcones:{
-    flexDirection:'row',
-    justifyContent: 'space-around',
     alignItems: 'center',
+  },
+  itensIcones: {
+    flexDirection: 'row',
     gap: 15,
   },
-  boxTextUsuario:{
-    marginTop: 10
+  icone: {
+    width: 24,
+    height: 24,
   },
-  textUsuario:{
+  circulo: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#9603E8',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  circuloA: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#EEE',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textUsuario: {
     color: 'white',
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: 'bold',
-  }
-})
+    marginTop: 10,
+  },
+  saldoContainer: {
+    padding: 20,
+  },
+  saldoTitulo: {
+    fontSize: 16,
+    color: '#555',
+    fontWeight: 'bold',
 
-
-
+  },
+  saldoValor: {
+    fontSize: 28,
+    fontWeight: 'bold',
+  },
+  atalhosContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+  },
+  atalho: {
+    // Removido a borda cinza (backgroundColor '#DDD') 
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  iconeContainer: {
+    alignItems: 'center',
+  },
+  cardCartoes: {
+    backgroundColor: '#EEE',
+    margin: 20,
+    padding: 15,
+    borderRadius: 10,
+  },
+  cardCredito: {
+    backgroundColor: 'white',
+    margin: 20,
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
+  },
+  creditoTitulo: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  botaoRoxo: {
+    backgroundColor: '#8000FF',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  botaoTexto: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+});
