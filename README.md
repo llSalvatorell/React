@@ -1,6 +1,6 @@
-# Nubank
+# Projeto NUbank
 
-Bem-vindo(a) ao repositório **Nubank**. Siga as instruções abaixo para baixar e executar a aplicação.
+Bem-vindo(a) ao repositório **React**. Siga as instruções abaixo para baixar e executar a aplicação.
 
 
 ## Pré-requisitos
@@ -20,8 +20,7 @@ Siga os passos abaixo para obter uma cópia local do projeto:
 1. **Clonar o repositório**  
    Abra o terminal (Prompt de Comando ou Bash) e execute:
    ```bash
-    git clone https://github.com/nobreozeas/nubank.git
-    cd nubank
+    git clone [https://github.com/llSalvatorell/React.git]
     npm install
     npx expo start
     ```
